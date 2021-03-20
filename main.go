@@ -12,6 +12,7 @@ func main(){
 	consul:= consul2.NewRegistry(func(options *registry.Options) {
 		options.Addrs = []string{"127.0.0.1"}
 	})
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	service:= web.NewService(
 		web.Name("go.micro.api.product"),
@@ -27,6 +28,8 @@ func main(){
 	v1.GET("/area/:aid",handler.GetProductByArea)
 	v1.GET("/worker/:wid",handler.GetProductByCustom)
 	v1.GET("/",handler.GetProductAll)
+	v1.POST("/:id",handler.SetProductByID)
+	v1.GET("/test",handler.Test)
 	_ = router.Run()
 	if err:=service.Run();err!=nil{
 		log.Fatal(err.Error())
