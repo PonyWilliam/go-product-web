@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3ac65950-f402-4a7a-becd-ba344faf9308" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/default.etcd/member/snap/db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/default.etcd/member/wal/0.tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/default.etcd/member/wal/0000000000000000-0000000000000000.wal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/Product.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../WorkWeb" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkWeb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../borrow/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../borrow/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../borrow/domain/repository/product_log.go" beforeDir="false" afterPath="$PROJECT_DIR$/../borrow/domain/repository/product_log.go" afterDir="false" />

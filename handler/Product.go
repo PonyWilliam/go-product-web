@@ -126,10 +126,18 @@ func SetProductByID(c *gin.Context){
 		rsp.ProductBelongCategory = new_category
 	}
 	if important:=c.PostForm("important");important!=""{
-		rsp.IsImportant = true
+		if important == "true" || important == "1"{
+			rsp.IsImportant = true
+		}else{
+			rsp.IsImportant = false
+		}
 	}
 	if is:=c.PostForm("is");is!=""{
-		rsp.ProductIs = true
+		if is == "true" || is == "1"{
+			rsp.ProductIs = true
+		}else{
+			rsp.ProductIs = false
+		}
 	}
 	if wid:=c.PostForm("wid");wid!=""{
 		new_wid,_ := strconv.ParseInt(wid,10,64)
