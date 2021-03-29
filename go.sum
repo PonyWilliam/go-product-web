@@ -31,6 +31,8 @@ github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym
 github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5/go.mod h1:tTuCMEN+UleMWgg9dVx4Hu52b1bJo+59jBh3ajtinzw=
 github.com/Microsoft/hcsshim v0.8.7-0.20191101173118-65519b62243c/go.mod h1:7xhjOwRV2+0HXGmM0jxaEu+ZiXJFoVZOTfL/dmqbrD8=
 github.com/OpenDNS/vegadns2client v0.0.0-20180418235048-a3fa4a771d87/go.mod h1:iGLljf5n9GjT6kc0HBvyI1nOKnGQbNB66VzSNbK5iks=
+github.com/PonyWilliam/go-category v1.0.0 h1:jvG9lOSIDfccTwDB1or2vQIdJpFGGFazPGutRxq6qzI=
+github.com/PonyWilliam/go-category v1.0.0/go.mod h1:RuPGE+xANCWxjLGxY1YHmvG7UJxn5bUptxu4FcZXh5M=
 github.com/PonyWilliam/go-common v0.0.0-20210208041853-3307a2394f4c h1:Y8D7bVZpyc2BADmOT2mIDK8M3Klh0apwoulBpjZUd+Y=
 github.com/PonyWilliam/go-common v0.0.0-20210208041853-3307a2394f4c/go.mod h1:xMCdv0SxQM+zPBvQPOrVPglF7Bwl541f86931dYvRZ4=
 github.com/PonyWilliam/go-product v1.0.0 h1:R/ojcfBqaNUYGjKlsl0DtODoQUWCSxtbxoyRuHdfqFU=

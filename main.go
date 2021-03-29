@@ -30,6 +30,10 @@ func main(){
 	v1.GET("/",handler.GetProductAll)
 	v1.POST("/:id",handler.SetProductByID)
 	v1.GET("/test",handler.Test)
+	v2 := router.Group("category")
+	v2.GET("/",handler.JWTAuthMiddleware(),handler.FindCategories)
+	v2.GET("/:id",handler.JWTAuthMiddleware(),handler.FindCategoryByID)
+	v2.DELETE("/:id",handler.JWTAuthMiddleware(),handler.DeleteCategory)
 	_ = router.Run()
 	if err:=service.Run();err!=nil{
 		log.Fatal(err.Error())
