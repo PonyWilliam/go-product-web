@@ -19,4 +19,7 @@ test:
 
 .PHONY: docker
 docker:
-	docker build . -t ProductWeb-service:latest
+	go build -o ProductWeb main.go
+	docker build -t ponywilliam/product-web .
+	docker tag ponywilliam/product-web ponywilliam/product-web
+	docker push ponywilliam/product-web

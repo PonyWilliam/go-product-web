@@ -1,3 +1,7 @@
-FROM alpine
-ADD ProductWeb-service /ProductWeb-service
-ENTRYPOINT [ "/ProductWeb-service" ]
+FROM alpine:latest
+
+RUN mkdir /app
+WORKDIR /app
+ADD ProductWeb /app/ProductWeb
+
+CMD ["./ProductWeb"]
