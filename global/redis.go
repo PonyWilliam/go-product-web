@@ -9,7 +9,7 @@ const Duration = time.Minute * 5
 func SetupRedisDb() error{
 	RedisDB = redis.NewClient(&redis.Options{
 		Addr: "106.13.132.160:6379",
-		Password: nil,
+		Password: "",
 		DB: 0,
 	})
 	_,err := RedisDB.Ping().Result()

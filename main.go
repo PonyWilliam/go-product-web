@@ -54,7 +54,7 @@ func main() {
 	v1.PUT("/Area/:id",handler.JWTAuthMiddleware(),handler.UpdateArea)
 	v1.DELETE("del/:id",handler.JWTAuthMiddleware(),handler.DelProduct)
 	v1.GET("log/",handler.JWTAuthMiddleware(),handler.ProductLog)
-	v1.GET("borrowlog/",handler.JWTAuthMiddleware(),Cors(),handler.GetBorrowLog)
+	v1.GET("borrowlog/",handler.JWTAuthMiddleware(),handler.GetBorrowLog)
 	router.Use(Cors())
 	_ = router.Run()
 	router.Use(Cors())
