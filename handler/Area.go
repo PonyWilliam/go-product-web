@@ -2,9 +2,11 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/PonyWilliam/go-ProductWeb/cache"
 	area "github.com/PonyWilliam/go-area/proto"
+	product "github.com/PonyWilliam/go-product/proto"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/v2/client"
@@ -111,9 +113,11 @@ func FindAreaAll(c *gin.Context){
 		})
 		return
 	}
+	result := &product.Response_ProductInfos{}
+	_ = json.Unmarshal([]byte(areas), &result.Infos)
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":areas,
+		"data":result.Infos,
 	})
 }
 func UpdateArea(c *gin.Context){

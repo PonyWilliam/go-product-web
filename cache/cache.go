@@ -10,10 +10,10 @@ type Temp struct{
 	Name string
 	Age int64
 }
-func GetGlobalCache(key string)(rsp interface{},err error){
+func GetGlobalCache(key string)(rsp string,err error){
 	val,err := global.RedisDB.Get(key).Result()
 	if err == redis.Nil || err != nil{
-		return nil,err
+		return "",err
 	}
 	return val,nil
 }

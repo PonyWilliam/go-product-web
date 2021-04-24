@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/PonyWilliam/go-ProductWeb/cache"
 	borrowlog "github.com/PonyWilliam/go-borrow-logs/proto"
@@ -48,7 +49,9 @@ func GetProductByID(c *gin.Context){
 		c.JSON(200,res)
 		return
 	}
-	c.JSON(200,pro)
+	result := &product.Response_ProductInfo{}
+	_ = json.Unmarshal([]byte(pro), &result)
+	c.JSON(200,result)
 }
 func GetProductByName(c *gin.Context){
 	name := c.Param("name")
@@ -102,7 +105,7 @@ func GetProductByCustom(c *gin.Context){
 }
 func GetProductAll(c *gin.Context){
 	//做redis缓存
-	products,err :=  cache.GetGlobalCache("product")
+	res,err :=  cache.GetGlobalCache("product")
 	if err == redis.Nil || err != nil{
 		cl := product.NewProductService("go.micro.service.product",client.DefaultClient)
 		res,err := cl.FindAll(context.TODO(),&product.Request_Null{})
@@ -123,9 +126,11 @@ func GetProductAll(c *gin.Context){
 			"data":res.Infos,
 		})
 	}else{
+		result := &product.Response_ProductInfos{}
+		_ = json.Unmarshal([]byte(res), &result.Infos)
 		c.JSON(200,gin.H{
 			"code":200,
-			"data":products,
+			"data":result.Infos,
 		})
 	}
 }
@@ -348,7 +353,7 @@ func GetBorrowLog(c *gin.Context){
 		})
 		return
 	}
-	logs,err := cache.GetGlobalCache("logs")
+	resu,err := cache.GetGlobalCache("logs")
 	if err == redis.Nil || err != nil{
 		cl := borrowlog.NewBorrowLogsService("go.micro.service.borrowlog",client.DefaultClient)
 		rsp,err := cl.FindAll(context.TODO(),&borrowlog.Req_Null{})
@@ -366,9 +371,11 @@ func GetBorrowLog(c *gin.Context){
 		})
 		return
 	}
+	result := &borrowlog.RspLogs{}
+	_ = json.Unmarshal([]byte(resu), &result.Logs)
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":logs,
+		"data":result.Logs,
 	})
 }
 func Test(c *gin.Context){

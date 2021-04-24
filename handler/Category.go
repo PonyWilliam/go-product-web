@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/PonyWilliam/go-ProductWeb/cache"
 	category "github.com/PonyWilliam/go-category/proto"
@@ -80,9 +81,11 @@ func FindCategoryByID(c *gin.Context){
 		})
 		return
 	}
+	result := &category.Category_Response{}
+	_ = json.Unmarshal([]byte(res), &result)
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":res,
+		"data":result,
 	})
 }
 func FindCategoriesByName(c *gin.Context){
@@ -143,9 +146,11 @@ func FindCategories(c *gin.Context){
 		_ = cache.SetGlobalCache("category", rsp)
 		return
 	}
+	result := &category.Find_All_Response{}
+	_ = json.Unmarshal([]byte(res), &result)
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":res,
+		"data":result,
 	})
 }
 func CreateCategory(c *gin.Context){
