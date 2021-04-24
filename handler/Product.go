@@ -85,6 +85,31 @@ func GetProductByArea(c *gin.Context){
 	})
 
 }
+func GetProductByAreaIs(c *gin.Context){
+	aid := c.Param("aid")
+	new_aid,_ := strconv.ParseInt(aid,10,64)
+	cl := product.NewProductService("go.micro.service.product",client.DefaultClient)
+	res,err := cl.FindProductByArea(context.TODO(),&product.Request_ProductArea{Aid: new_aid})
+	if err!=nil{
+		c.JSON(200,gin.H{
+			"code":500,
+			"msg":err.Error(),
+		})
+		return
+	}
+	result := &product.Response_ProductInfos{}
+	for _,v := range res.Infos{
+		if v.ProductIs == false{
+			continue//不记录
+		}
+		result.Infos = append(result.Infos,v)
+	}
+	c.JSON(200,gin.H{
+		"code":200,
+		"data":result.Infos,
+	})
+
+}
 func GetProductByCustom(c *gin.Context){
 	wid := c.Param("wid")
 	new_wid,_ := strconv.ParseInt(wid,10,64)
@@ -364,7 +389,7 @@ func GetBorrowLog(c *gin.Context){
 			})
 			return
 		}
-		_ = cache.SetGlobalCache("logs", rsp.Logs)
+		_ = cache.SetGlobalCache("logs", rsp)
 		c.JSON(200,gin.H{
 			"code":200,
 			"data":rsp.Logs,
@@ -372,7 +397,7 @@ func GetBorrowLog(c *gin.Context){
 		return
 	}
 	result := &borrowlog.RspLogs{}
-	_ = json.Unmarshal([]byte(resu), &result.Logs)
+	_ = json.Unmarshal([]byte(resu), &result)
 	c.JSON(200,gin.H{
 		"code":200,
 		"data":result.Logs,
