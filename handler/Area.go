@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/PonyWilliam/go-ProductWeb/cache"
 	area "github.com/PonyWilliam/go-area/proto"
-	product "github.com/PonyWilliam/go-product/proto"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/v2/client"
@@ -106,15 +105,15 @@ func FindAreaAll(c *gin.Context){
 			})
 			return
 		}
-		_ = cache.SetGlobalCache("area", rsp.Infos)
+		_ = cache.SetGlobalCache("area", rsp)
 		c.JSON(200,gin.H{
 			"code":200,
 			"data":rsp.Infos,
 		})
 		return
 	}
-	result := &product.Response_ProductInfos{}
-	_ = json.Unmarshal([]byte(areas), &result.Infos)
+	result := &area.Response_AreaInfos{}
+	_ = json.Unmarshal([]byte(areas), &result)
 	c.JSON(200,gin.H{
 		"code":200,
 		"data":result.Infos,

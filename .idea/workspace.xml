@@ -7,8 +7,7 @@
       <change afterPath="$PROJECT_DIR$/../dockerenv/temp.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../product/go-product" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/cache.go" beforeDir="false" afterPath="$PROJECT_DIR$/cache/cache.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global/settings.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductWeb" beforeDir="false" afterPath="$PROJECT_DIR$/ProductWeb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/Area.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Area.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/Category.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Category.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/Product.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Product.go" afterDir="false" />

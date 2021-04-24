@@ -74,7 +74,7 @@ func FindCategoryByID(c *gin.Context){
 	if err != nil || err == redis.Nil{
 		cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
 		rsp,_ := cl.FindCategoryById(context.TODO(),&category.FindCateGoryById_Request{Id: new_id})
-		_ = cache.SetGlobalCache("category_%v",new_id)
+		_ = cache.SetGlobalCache(fmt.Sprintf("category_%v",new_id),rsp)
 		c.JSON(200,gin.H{
 			"code":200,
 			"data":rsp,
@@ -135,15 +135,15 @@ func FindCategories(c *gin.Context){
 		})
 		return
 	}
-	res,err := cache.GetGlobalCache("area")
+	res,err := cache.GetGlobalCache("category")
 	if err == redis.Nil || err != nil{
 		cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
 		rsp,_ := cl.FindAllCategory(context.TODO(),&category.Find_All_Request{})
+		_ = cache.SetGlobalCache("category", rsp)
 		c.JSON(200,gin.H{
 			"code":200,
 			"data":rsp,
 		})
-		_ = cache.SetGlobalCache("category", rsp)
 		return
 	}
 	result := &category.Find_All_Response{}

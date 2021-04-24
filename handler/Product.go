@@ -117,7 +117,7 @@ func GetProductAll(c *gin.Context){
 			return
 		}
 		//存入缓存
-		err = cache.SetGlobalCache("product",res.Infos)
+		err = cache.SetGlobalCache("product",res)
 		if err != nil{
 			fmt.Println(err.Error())
 		}
@@ -127,7 +127,7 @@ func GetProductAll(c *gin.Context){
 		})
 	}else{
 		result := &product.Response_ProductInfos{}
-		_ = json.Unmarshal([]byte(res), &result.Infos)
+		_ = json.Unmarshal([]byte(res), &result)
 		c.JSON(200,gin.H{
 			"code":200,
 			"data":result.Infos,
