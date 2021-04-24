@@ -1,0 +1,17 @@
+{
+  "code": 200,
+  "data": {
+    "id": 2,
+    "product_name": "RFIDeX团队保密测试机",
+    "product_description": "RFIDeX团队保密测试机",
+    "product_level": 0,
+    "product_belong_category": 1,
+    "is_important": true,
+    "product_is": true,
+    "product_belong_custom": 2,
+    "product_belong_area": 1,
+    "product_location": " ",
+    "product_rfid": "e2806894000040094d3544c1",
+    "image_id": 0
+  }
+}

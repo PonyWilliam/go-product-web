@@ -2,8 +2,11 @@ package handler
 
 import (
 	"context"
+	"fmt"
+	"github.com/PonyWilliam/go-ProductWeb/cache"
 	area "github.com/PonyWilliam/go-area/proto"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/v2/client"
 	"strconv"
 )
@@ -35,6 +38,7 @@ func CreateArea(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache("area")
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":"success",
@@ -66,6 +70,8 @@ func DelArea(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache(fmt.Sprintf("area_%v",id))
+	cache.DelCache("area")
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":"success",
@@ -87,18 +93,27 @@ func FindAreaAll(c *gin.Context){
 		})
 		return
 	}
-	cl := area.NewAreaService("go.micro.service.area",client.DefaultClient)
-	rsp,err := cl.FindAll(context.TODO(),&area.Request_NULL{})
-	if err != nil{
+	areas,err := cache.GetGlobalCache("area")
+	if err == redis.Nil || err != nil{
+		cl := area.NewAreaService("go.micro.service.area",client.DefaultClient)
+		rsp,err := cl.FindAll(context.TODO(),&area.Request_NULL{})
+		if err != nil{
+			c.JSON(200,gin.H{
+				"code":500,
+				"msg":err.Error(),
+			})
+			return
+		}
+		_ = cache.SetGlobalCache("area", rsp.Infos)
 		c.JSON(200,gin.H{
-			"code":500,
-			"msg":err.Error(),
+			"code":200,
+			"data":rsp.Infos,
 		})
 		return
 	}
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":rsp.Infos,
+		"data":areas,
 	})
 }
 func UpdateArea(c *gin.Context){
@@ -137,6 +152,8 @@ func UpdateArea(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache(fmt.Sprintf("area_%v",new_id))
+	cache.DelCache("area")
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":"success",

@@ -2,39 +2,14 @@ package handler
 
 import (
 	"context"
+	"fmt"
+	"github.com/PonyWilliam/go-ProductWeb/cache"
 	category "github.com/PonyWilliam/go-category/proto"
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/v2/client"
 	"strconv"
 )
-
-func CeateCategory(c *gin.Context){
-	user,ok := c.Get("username")
-	if ok == false{
-		c.JSON(200,gin.H{
-			"code":500,
-			"msg":"无法读取到用户信息",
-		})
-		return
-	}
-	if user!= "admin"{
-		c.JSON(200,gin.H{
-			"code":500,
-			"msg":"请使用管理员账号登陆",
-		})
-		return
-	}
-
-	name := c.PostForm("name")
-	description := c.PostForm("description")
-
-	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
-	rsp,_ := cl.CreateCategory(context.TODO(),&category.Create_Category_Request{CategoryName: name,CategoryDescription: description})
-	c.JSON(200,gin.H{
-		"code":200,
-		"msg":rsp.Message,
-	})
-}
 func DeleteCategory(c *gin.Context){
 	user,ok := c.Get("username")
 	if ok == false{
@@ -62,6 +37,8 @@ func DeleteCategory(c *gin.Context){
 	new_id,_ := strconv.ParseInt(id,10,64)
 	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
 	rsp,_ := cl.DeleteCategory(context.TODO(),&category.Delete_Category_Request{CategoryId: new_id})
+	cache.DelCache("category")
+	cache.DelCache(fmt.Sprintf("category_%v",new_id))
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp.Message,
@@ -92,11 +69,20 @@ func FindCategoryByID(c *gin.Context){
 		return
 	}
 	new_id,_ := strconv.ParseInt(id,10,64)
-	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
-	rsp,_ := cl.FindCategoryById(context.TODO(),&category.FindCateGoryById_Request{Id: new_id})
+	res,err := cache.GetGlobalCache(fmt.Sprintf("category_%v",new_id))
+	if err != nil || err == redis.Nil{
+		cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
+		rsp,_ := cl.FindCategoryById(context.TODO(),&category.FindCateGoryById_Request{Id: new_id})
+		_ = cache.SetGlobalCache("category_%v",new_id)
+		c.JSON(200,gin.H{
+			"code":200,
+			"data":rsp,
+		})
+		return
+	}
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":rsp,
+		"data":res,
 	})
 }
 func FindCategoriesByName(c *gin.Context){
@@ -146,11 +132,20 @@ func FindCategories(c *gin.Context){
 		})
 		return
 	}
-	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
-	rsp,_ := cl.FindAllCategory(context.TODO(),&category.Find_All_Request{})
+	res,err := cache.GetGlobalCache("area")
+	if err == redis.Nil || err != nil{
+		cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
+		rsp,_ := cl.FindAllCategory(context.TODO(),&category.Find_All_Request{})
+		c.JSON(200,gin.H{
+			"code":200,
+			"data":rsp,
+		})
+		_ = cache.SetGlobalCache("category", rsp)
+		return
+	}
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":rsp,
+		"data":res,
 	})
 }
 func CreateCategory(c *gin.Context){
@@ -173,6 +168,7 @@ func CreateCategory(c *gin.Context){
 	description := c.PostForm("description")
 	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
 	rsp,_ := cl.CreateCategory(context.TODO(),&category.Create_Category_Request{CategoryName: name,CategoryDescription: description})
+	cache.DelCache("category")
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp.Message,
@@ -207,6 +203,8 @@ func UpdateCategory(c *gin.Context){
 	description := c.PostForm("description")
 	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)
 	rsp,_ := cl.UpdateCategory(context.TODO(),&category.Update_Category_Request{CategoryId:new_id,CategoryName: name,CategoryDescription: description})
+	cache.DelCache("category")
+	cache.DelCache(fmt.Sprintf("category_%v",new_id))
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp.Message,

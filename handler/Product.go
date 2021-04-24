@@ -33,16 +33,22 @@ func GetProductByRFID(c *gin.Context){
 func GetProductByID(c *gin.Context){
 	ID := c.Param("id")
 	new_ID,_ := strconv.ParseInt(ID,10,64)
-	cl := product.NewProductService("go.micro.service.product",client.DefaultClient)
-	res,err := cl.FindProductByID(context.TODO(),&product.Request_ProductID{Id: new_ID})
-	if err!=nil{
-		c.JSON(200,gin.H{
-			"code":500,
-			"msg":err.Error(),
-		})
+	pro,err := cache.GetGlobalCache(fmt.Sprintf("product_%v",new_ID))
+	if err == redis.Nil || err != nil{
+		cl := product.NewProductService("go.micro.service.product",client.DefaultClient)
+		res,err := cl.FindProductByID(context.TODO(),&product.Request_ProductID{Id: new_ID})
+		if err!=nil{
+			c.JSON(200,gin.H{
+				"code":500,
+				"msg":err.Error(),
+			})
+			return
+		}
+		_ = cache.SetGlobalCache(fmt.Sprintf("product_%v",new_ID),res)
+		c.JSON(200,res)
 		return
 	}
-	c.JSON(200,res)
+	c.JSON(200,pro)
 }
 func GetProductByName(c *gin.Context){
 	name := c.Param("name")
@@ -96,7 +102,7 @@ func GetProductByCustom(c *gin.Context){
 }
 func GetProductAll(c *gin.Context){
 	//做redis缓存
-	products,err :=  cache.GetCache("product")
+	products,err :=  cache.GetGlobalCache("product")
 	if err == redis.Nil || err != nil{
 		cl := product.NewProductService("go.micro.service.product",client.DefaultClient)
 		res,err := cl.FindAll(context.TODO(),&product.Request_Null{})
@@ -108,7 +114,7 @@ func GetProductAll(c *gin.Context){
 			return
 		}
 		//存入缓存
-		err = cache.SetCache("product",res)
+		err = cache.SetGlobalCache("product",res.Infos)
 		if err != nil{
 			fmt.Println(err.Error())
 		}
@@ -119,7 +125,7 @@ func GetProductAll(c *gin.Context){
 	}else{
 		c.JSON(200,gin.H{
 			"code":200,
-			"data":products.Infos,
+			"data":products,
 		})
 	}
 }
@@ -223,6 +229,8 @@ func SetProductByID(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache("product")
+	cache.DelCache(fmt.Sprintf("product_%v",new_id))
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp2.Message,
@@ -247,6 +255,8 @@ func DelProduct(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache("product")
+	cache.DelCache(fmt.Sprintf("product_%v",id))
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp.Message,
@@ -323,6 +333,7 @@ func CreateProduct(c *gin.Context){
 		})
 		return
 	}
+	cache.DelCache("product")
 	c.JSON(200,gin.H{
 		"code":200,
 		"msg":rsp.Message,
@@ -337,19 +348,27 @@ func GetBorrowLog(c *gin.Context){
 		})
 		return
 	}
-	cl := borrowlog.NewBorrowLogsService("go.micro.service.borrowlog",client.DefaultClient)
-	rsp,err := cl.FindAll(context.TODO(),&borrowlog.Req_Null{})
-	if err != nil{
+	logs,err := cache.GetGlobalCache("logs")
+	if err == redis.Nil || err != nil{
+		cl := borrowlog.NewBorrowLogsService("go.micro.service.borrowlog",client.DefaultClient)
+		rsp,err := cl.FindAll(context.TODO(),&borrowlog.Req_Null{})
+		if err != nil{
+			c.JSON(200,gin.H{
+				"code":500,
+				"msg":err.Error(),
+			})
+			return
+		}
+		_ = cache.SetGlobalCache("logs", rsp.Logs)
 		c.JSON(200,gin.H{
-			"code":500,
-			"msg":err.Error(),
+			"code":200,
+			"data":rsp.Logs,
 		})
 		return
 	}
-	fmt.Println(rsp.Logs)
 	c.JSON(200,gin.H{
 		"code":200,
-		"data":rsp.Logs,
+		"data":logs,
 	})
 }
 func Test(c *gin.Context){

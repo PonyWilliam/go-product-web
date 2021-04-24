@@ -5,10 +5,10 @@ import (
 	"time"
 )
 var(RedisDB *redis.Client)
-const Duration = time.Minute * 5
+const Duration = time.Minute * 30
 func SetupRedisDb() error{
 	RedisDB = redis.NewClient(&redis.Options{
-		Addr: "106.13.132.160:6379",
+		Addr: ":6379",
 		Password: "",
 		DB: 0,
 	})

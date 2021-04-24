@@ -6,11 +6,12 @@ import (
 	"github.com/afex/hystrix-go/hystrix"
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/v2/registry"
-	"github.com/micro/go-micro/v2/util/log"
 	"github.com/micro/go-micro/v2/web"
 	consul2 "github.com/micro/go-plugins/registry/consul/v2"
+	"log"
 	"net/http"
 )
+
 func main() {
 	consul:= consul2.NewRegistry(func(options *registry.Options) {
 		options.Addrs = []string{"106.13.132.160"}
@@ -23,11 +24,11 @@ func main() {
 		web.Handler(router),
 	)
 	_ = service.Init()
-
+	gin.SetMode(gin.ReleaseMode)
 	hystrixStreamHandler := hystrix.NewStreamHandler()
 	hystrixStreamHandler.Start()
 	go func(){
-		err := http.ListenAndServe("9092",hystrixStreamHandler)
+		err := http.ListenAndServe(":9092",hystrixStreamHandler)
 		if err != nil{
 			log.Fatal(err)
 		}

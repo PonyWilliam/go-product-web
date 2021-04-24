@@ -3,24 +3,22 @@ package cache
 import (
 	"encoding/json"
 	"github.com/PonyWilliam/go-ProductWeb/global"
-	product "github.com/PonyWilliam/go-product/proto"
 	"github.com/go-redis/redis"
 	"github.com/micro/go-micro/v2/util/log"
 )
-var products *product.Response_ProductInfos
-func GetCache(key string)(*product.Response_ProductInfos,error){
+type Temp struct{
+	Name string
+	Age int64
+}
+func GetGlobalCache(key string)(rsp interface{},err error){
 	val,err := global.RedisDB.Get(key).Result()
 	if err == redis.Nil || err != nil{
 		return nil,err
-	}else {
-		if err := json.Unmarshal([]byte(val),&products);err != nil{
-			return nil,err
-		}
-		return products,nil
 	}
+	return val,nil
 }
-func SetCache(key string,products *product.Response_ProductInfos)error{
-	content,err := json.Marshal(products)
+func SetGlobalCache(key string,res interface{}) error {
+	content,err := json.Marshal(res)
 	if err != nil{
 		log.Fatal(err)
 	}
@@ -29,4 +27,7 @@ func SetCache(key string,products *product.Response_ProductInfos)error{
 		log.Fatal(err)
 	}
 	return nil
+}
+func DelCache(key string){
+	global.RedisDB.Del(key)
 }
