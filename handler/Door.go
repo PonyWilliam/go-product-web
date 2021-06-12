@@ -44,7 +44,7 @@ func DoorAdd (c *gin.Context){
 	})
 }
 func DoorFindByAID(c *gin.Context)  {
-	aid,_ := strconv.ParseInt(c.PostForm("aid"),10,64)
+	aid,_ := strconv.ParseInt(c.Param("aid"),10,64)
 	rsp,err := cl.FindByAID(context.TODO(),&arealogs.Area{Aid: aid})
 	if err != nil{
 		c.JSON(200,gin.H{
@@ -59,7 +59,7 @@ func DoorFindByAID(c *gin.Context)  {
 	})
 }
 func DoorFindByWID(c *gin.Context)  {
-	wid,_ := strconv.ParseInt(c.PostForm("aid"),10,64)
+	wid,_ := strconv.ParseInt(c.Param("wid"),10,64)
 	rsp,err := cl.FindByWID(context.TODO(),&arealogs.Worker{Id: wid})
 	if err != nil{
 		c.JSON(200,gin.H{
@@ -74,7 +74,7 @@ func DoorFindByWID(c *gin.Context)  {
 	})
 }
 func DoorFindByID(c *gin.Context){
-	id,_ := strconv.ParseInt(c.PostForm("id"),10,64)
+	id,_ := strconv.ParseInt(c.Param("id"),10,64)
 	rsp,err := cl.FindByID(context.TODO(),&arealogs.Id{Id: id})
 	if err != nil{
 		c.JSON(200,gin.H{

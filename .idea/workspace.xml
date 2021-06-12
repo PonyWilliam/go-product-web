@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ac65950-f402-4a7a-becd-ba344faf9308" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/handler/Door.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../area/area" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../arealogs/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../arealogs/.idea/arealogs.iml" afterDir="false" />
@@ -44,13 +43,8 @@
       <change afterPath="$PROJECT_DIR$/../study/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../study/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProductWeb" beforeDir="false" afterPath="$PROJECT_DIR$/ProductWeb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/Area.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Area.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/Category.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/MiddleWare.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/MiddleWare.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/Product.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Product.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProductWeb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/Door.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/Door.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../WorkWeb" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkWeb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../area/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../area/.idea/vcs.xml" afterDir="false" />
