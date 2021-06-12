@@ -7,11 +7,8 @@ import (
 	"github.com/micro/go-micro/v2/client"
 	"strconv"
 )
-var cl arealogs.AreaLogsService
-func init(){
-	cl = arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
-}
 func DoorAdd (c *gin.Context){
+	cl := arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 	pid := c.PostForm("pid")
 	wid,_ := strconv.ParseInt(c.PostForm("wid"),10,64)
 	aid,_ := strconv.ParseInt(c.PostForm("aid"),10,64)
@@ -30,6 +27,7 @@ func DoorAdd (c *gin.Context){
 	})
 }
 func DoorFindAll(c *gin.Context){
+	cl := arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 	rsp,err := cl.FindAll(context.TODO(),&arealogs.Null{})
 	if err != nil{
 		c.JSON(200,gin.H{
@@ -44,6 +42,7 @@ func DoorFindAll(c *gin.Context){
 	})
 }
 func DoorFindByAID(c *gin.Context)  {
+	cl := arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 	aid,_ := strconv.ParseInt(c.Param("aid"),10,64)
 	rsp,err := cl.FindByAID(context.TODO(),&arealogs.Area{Aid: aid})
 	if err != nil{
@@ -59,6 +58,7 @@ func DoorFindByAID(c *gin.Context)  {
 	})
 }
 func DoorFindByWID(c *gin.Context)  {
+	cl := arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 	wid,_ := strconv.ParseInt(c.Param("wid"),10,64)
 	rsp,err := cl.FindByWID(context.TODO(),&arealogs.Worker{Id: wid})
 	if err != nil{
@@ -74,6 +74,7 @@ func DoorFindByWID(c *gin.Context)  {
 	})
 }
 func DoorFindByID(c *gin.Context){
+	cl := arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 	id,_ := strconv.ParseInt(c.Param("id"),10,64)
 	rsp,err := cl.FindByID(context.TODO(),&arealogs.Id{Id: id})
 	if err != nil{
