@@ -194,6 +194,9 @@ func SetProductByID(c *gin.Context){
 		})
 		return
 	}
+	//category,_ := strconv.ParseInt(c.PostForm("category"),10,64)
+	//area,_ := strconv.ParseInt(c.PostForm("area"),10,64)
+	//temp,_ := strconv.ParseInt(c.PostForm("is"),10,64)
 	if name:=c.PostForm("name");name!=""{
 		rsp.ProductName = name
 	}
@@ -202,11 +205,15 @@ func SetProductByID(c *gin.Context){
 	}
 	if level:=c.PostForm("level");level!=""{
 		new_level,_ := strconv.ParseInt(level,10,64)
-		rsp.ProductLevel = new_level
+		if new_level > 0{
+			rsp.ProductLevel = new_level
+		}
 	}
 	if category:=c.PostForm("category");category!=""{
 		new_category,_ := strconv.ParseInt(category,10,64)
-		rsp.ProductBelongCategory = new_category
+		if new_category > 0{
+			rsp.ProductBelongCategory = new_category
+		}
 	}
 	if important:=c.PostForm("important");important!=""{
 		if important == "true" || important == "1"{
@@ -224,17 +231,20 @@ func SetProductByID(c *gin.Context){
 	}
 	if wid:=c.PostForm("wid");wid!=""{
 		new_wid,_ := strconv.ParseInt(wid,10,64)
-		rsp.ProductBelongCustom = new_wid
+		if new_id > 0{
+			rsp.ProductBelongCustom = new_wid
+		}
 	}
-
-	if aid:=c.PostForm("aid");aid!=""{
+	if aid:=c.PostForm("area");aid!=""{
 		new_aid,_ := strconv.ParseInt(aid,10,64)
-		rsp.ProductBelongArea = new_aid
+		if new_aid > 0{
+			rsp.ProductBelongArea = new_aid
+		}
 	}
 	if location:=c.PostForm("location");location!=""{
 		rsp.ProductLocation = location
 	}
-	if rfid:=c.PostForm("rfid");rfid!=""{
+	if rfid:=c.PostForm("rfid");len(rfid)>2{
 		rsp.ProductRfid = rfid
 	}
 	if imageid:=c.PostForm("imageid");imageid!=""{

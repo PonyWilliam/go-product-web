@@ -8,10 +8,11 @@ replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
 	github.com/PonyWilliam/go-area v1.0.2
+	github.com/PonyWilliam/go-arealogs v1.0.2 // indirect
 	github.com/PonyWilliam/go-borrow v1.0.2
 	github.com/PonyWilliam/go-borrow-logs v1.1.0
 	github.com/PonyWilliam/go-category v1.0.2
-	github.com/PonyWilliam/go-common v1.0.5
+	github.com/PonyWilliam/go-common v1.0.7
 	github.com/PonyWilliam/go-product v1.0.4
 	github.com/aliyun/alibaba-cloud-sdk-go v0.0.0-20190808125512-07798873deee
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible

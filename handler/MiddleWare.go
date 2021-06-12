@@ -51,6 +51,19 @@ func GenToken(username string)(string,error){
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256,c)
 	return token.SignedString(MySecret)
 }
+func DoorMiddleWare() func(c *gin.Context){
+	return func(c *gin.Context) {
+		door := c.GetHeader("door")
+		if door != "william"{
+			c.JSON(200,gin.H{
+				"code":500,
+				"msg":"无权访问",
+			})
+			return
+		}
+		c.Next()
+	}
+}
 func ParseToken(tokenString string)(*MyClaims,error){
 	token,err := jwt.ParseWithClaims(tokenString,&MyClaims{},
 		func(token *jwt.Token) (interface{}, error) {

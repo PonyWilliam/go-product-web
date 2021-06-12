@@ -154,7 +154,7 @@ func FindCategories(c *gin.Context){
 	})
 }
 func CreateCategory(c *gin.Context){
-	user,ok := c.Get("username")
+	_,ok := c.Get("username")
 	if ok == false{
 		c.JSON(200,gin.H{
 			"code":500,
@@ -162,13 +162,7 @@ func CreateCategory(c *gin.Context){
 		})
 		return
 	}
-	if user!= "admin"{
-		c.JSON(200,gin.H{
-			"code":500,
-			"msg":"请使用管理员账号登陆",
-		})
-		return
-	}
+
 	name := c.PostForm("name")
 	description := c.PostForm("description")
 	cl := category.NewCategoryService("go.micro.services.category",client.DefaultClient)

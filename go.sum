@@ -35,6 +35,12 @@ github.com/Microsoft/hcsshim v0.8.7-0.20191101173118-65519b62243c/go.mod h1:7xhj
 github.com/OpenDNS/vegadns2client v0.0.0-20180418235048-a3fa4a771d87/go.mod h1:iGLljf5n9GjT6kc0HBvyI1nOKnGQbNB66VzSNbK5iks=
 github.com/PonyWilliam/go-area v1.0.2 h1:1Yc1PWQoVH5Fmo70OJLGfHZnIrFHJ0HSuZIjrRsX83M=
 github.com/PonyWilliam/go-area v1.0.2/go.mod h1:HQWr00zNEU15qQRHvZz/PxxAM9ASLdzUF702w1m0Ups=
+github.com/PonyWilliam/go-arealogs v1.0.0 h1:uz2eZ7o8+3n078GXC2caZlbd7VE6F+deS1iO0E2h6/o=
+github.com/PonyWilliam/go-arealogs v1.0.0/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
+github.com/PonyWilliam/go-arealogs v1.0.1 h1:8eHjDQeqsLzqWICt35rkBsOgQq4UB3m30zPVudNsOt0=
+github.com/PonyWilliam/go-arealogs v1.0.1/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
+github.com/PonyWilliam/go-arealogs v1.0.2 h1:jhLkS0+xPInRqsxS+SdsKZ1dinv/nlH2ZneALRJ62LY=
+github.com/PonyWilliam/go-arealogs v1.0.2/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
 github.com/PonyWilliam/go-borrow v1.0.2 h1:DdWG9CzhWzhM6pQHpgSTKhAJUvwWxR+m8ipStdWZmFA=
 github.com/PonyWilliam/go-borrow v1.0.2/go.mod h1:ae/zE8Jj+WzgzBSugL6k16PnZt8g6VihqX43WiPwb4w=
 github.com/PonyWilliam/go-borrow-logs v1.1.0 h1:+rnCf00A1XG5llHrEzf6xIPBOqwVFVpHxLUxg3bJOaQ=
@@ -45,6 +51,8 @@ github.com/PonyWilliam/go-common v0.0.0-20210208041853-3307a2394f4c h1:Y8D7bVZpy
 github.com/PonyWilliam/go-common v0.0.0-20210208041853-3307a2394f4c/go.mod h1:xMCdv0SxQM+zPBvQPOrVPglF7Bwl541f86931dYvRZ4=
 github.com/PonyWilliam/go-common v1.0.5 h1:ewDeBeT/opF6DUiYnkiegDneICi2yVvGRfkESgADMy0=
 github.com/PonyWilliam/go-common v1.0.5/go.mod h1:r5qjUbmrDs5TzLUD9vUFYtCumZOZMjxnExG5Q7CeLJg=
+github.com/PonyWilliam/go-common v1.0.7 h1:aHyU/5lCyPglbvKhLTabGx23Z5Tt6OjYQ/cctopu5aU=
+github.com/PonyWilliam/go-common v1.0.7/go.mod h1:r5qjUbmrDs5TzLUD9vUFYtCumZOZMjxnExG5Q7CeLJg=
 github.com/PonyWilliam/go-product v0.0.0-20210316123247-81c5fdc4d877/go.mod h1:BqJkoQz5X8rEGyQH9DnbIv8l5vi83lPZOyT3BLIUCmU=
 github.com/PonyWilliam/go-product v1.0.3/go.mod h1:BqJkoQz5X8rEGyQH9DnbIv8l5vi83lPZOyT3BLIUCmU=
 github.com/PonyWilliam/go-product v1.0.4 h1:yDXnAh450nQFt1d8qFJR3lnFduPPAhdnH5fPe6W148o=
@@ -392,7 +400,10 @@ github.com/micro/go-plugins/config/source/consul/v2 v2.9.1 h1:XeRTTccI9y0350tbrP
 github.com/micro/go-plugins/config/source/consul/v2 v2.9.1/go.mod h1:+3+XCOz1MTa6P8nggQ9xa71E63MOsgBygrg38/Xf6Jo=
 github.com/micro/go-plugins/registry/consul/v2 v2.9.1 h1:3IRsR8B9rEsjY4UXvhlkItEi0F/48LBOGdF3J8qLPMY=
 github.com/micro/go-plugins/registry/consul/v2 v2.9.1/go.mod h1:k+12oSCZwN0lYcWeiJ2Y12FWLP02fwJEJk6+EV5n6Io=
+github.com/micro/go-plugins/wrapper/breaker/hystrix/v2 v2.9.1 h1:cwnuDUzibCHuuPm10pKOAsxUWCCC7SxWN/WNpUwHT0I=
 github.com/micro/go-plugins/wrapper/breaker/hystrix/v2 v2.9.1/go.mod h1:Ap49tgWCkin0OmUQWg9cjAelLxN9nawvHs0ptgkvU/0=
+github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2 v2.9.1 h1:deucqwZl4me6hxF0wri3fEcsIrj5Q7WLVetn6NPD0FA=
+github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2 v2.9.1/go.mod h1:pVkgwsTnEzYjuluuGKCVhaoRSbxSUcZA0nuFOcVejig=
 github.com/micro/go-plugins/wrapper/ratelimiter/uber/v2 v2.9.1 h1:KhRh0JsLO+AZa7t5Dj85xpJxFsG9HPBY+5uDyouGNiE=
 github.com/micro/go-plugins/wrapper/ratelimiter/uber/v2 v2.9.1/go.mod h1:fCfY+fsejucBdZag1AJk98vVa7H+3QngA1LAMwEM0vk=
 github.com/miekg/dns v1.0.14/go.mod h1:W1PPwlIAgtquWBMBEV9nkV9Cazfe8ScdGz/Lj7v3Nrg=

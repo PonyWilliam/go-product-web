@@ -79,18 +79,11 @@ func DelArea(c *gin.Context){
 	})
 }
 func FindAreaAll(c *gin.Context){
-	user,ok := c.Get("username")
+	_,ok := c.Get("username")
 	if ok == false{
 		c.JSON(200,gin.H{
 			"code":500,
 			"msg":"无法读取到用户信息",
-		})
-		return
-	}
-	if user!= "admin"{
-		c.JSON(200,gin.H{
-			"code":500,
-			"msg":"请使用管理员账号登陆",
 		})
 		return
 	}
