@@ -29,6 +29,20 @@ func DoorAdd (c *gin.Context){
 		"msg":rsp.Response,
 	})
 }
+func DoorFindAll(c *gin.Context){
+	rsp,err := cl.FindAll(context.TODO(),&arealogs.Null{})
+	if err != nil{
+		c.JSON(200,gin.H{
+			"code":500,
+			"msg":err.Error(),
+		})
+		return
+	}
+	c.JSON(200,gin.H{
+		"code":200,
+		"data":rsp.Logs,
+	})
+}
 func DoorFindByAID(c *gin.Context)  {
 	aid,_ := strconv.ParseInt(c.Param("aid"),10,64)
 	rsp,err := cl.FindByAID(context.TODO(),&arealogs.Area{Aid: aid})
