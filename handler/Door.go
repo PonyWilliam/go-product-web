@@ -6,31 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/micro/go-micro/v2/client"
 	"strconv"
-	"strings"
 )
 var cl arealogs.AreaLogsService
 func init(){
 	cl = arealogs.NewAreaLogsService("go.micro.service.arealogs",client.DefaultClient)
 }
 func DoorAdd (c *gin.Context){
-	var pids []int64
 	pid := c.PostForm("pid")
 	wid,_ := strconv.ParseInt(c.PostForm("wid"),10,64)
 	aid,_ := strconv.ParseInt(c.PostForm("aid"),10,64)
 	content := c.PostForm("content")
-	temp := strings.Split(",",pid)
-	for _,v := range temp{
-		temp2,err := strconv.ParseInt(v,10,64)
-		if err != nil{
-			c.JSON(200,gin.H{
-				"code":500,
-				"msg":"pid有问题",
-			})
-			return
-		}
-		pids = append(pids,temp2)
-	}
-	rsp, _ := cl.AddLog(context.TODO(), &arealogs.ALog{AreaID: aid,PID: pids,WID: wid,Content: content})
+	rsp, _ := cl.AddLog(context.TODO(), &arealogs.ALog{AreaID: aid,PID: pid,WID: wid,Content: content})
 	if !rsp.Result{
 		c.JSON(200,gin.H{
 			"code":500,

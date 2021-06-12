@@ -41,6 +41,8 @@ github.com/PonyWilliam/go-arealogs v1.0.1 h1:8eHjDQeqsLzqWICt35rkBsOgQq4UB3m30zP
 github.com/PonyWilliam/go-arealogs v1.0.1/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
 github.com/PonyWilliam/go-arealogs v1.0.2 h1:jhLkS0+xPInRqsxS+SdsKZ1dinv/nlH2ZneALRJ62LY=
 github.com/PonyWilliam/go-arealogs v1.0.2/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
+github.com/PonyWilliam/go-arealogs v1.0.3 h1:RFbv1LZ8ZFt8+OKmR1TtJdXfr1fhfFPx1lCGcI+8rfs=
+github.com/PonyWilliam/go-arealogs v1.0.3/go.mod h1:mDnA3akuN/VAx/QQiIxnxVPkPCLqNgOPaOf0vKpLK3c=
 github.com/PonyWilliam/go-borrow v1.0.2 h1:DdWG9CzhWzhM6pQHpgSTKhAJUvwWxR+m8ipStdWZmFA=
 github.com/PonyWilliam/go-borrow v1.0.2/go.mod h1:ae/zE8Jj+WzgzBSugL6k16PnZt8g6VihqX43WiPwb4w=
 github.com/PonyWilliam/go-borrow-logs v1.1.0 h1:+rnCf00A1XG5llHrEzf6xIPBOqwVFVpHxLUxg3bJOaQ=

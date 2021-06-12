@@ -8,7 +8,7 @@ replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
 
 require (
 	github.com/PonyWilliam/go-area v1.0.2
-	github.com/PonyWilliam/go-arealogs v1.0.2 // indirect
+	github.com/PonyWilliam/go-arealogs v1.0.3
 	github.com/PonyWilliam/go-borrow v1.0.2
 	github.com/PonyWilliam/go-borrow-logs v1.1.0
 	github.com/PonyWilliam/go-category v1.0.2
